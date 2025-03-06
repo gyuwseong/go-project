@@ -34,8 +34,7 @@ go run cmd/server/main.go
 ## Running Tests
 
 ```bash
-# Run tests
-go test ./...
+go test ./... -v -cover
 ```
 
 ## Project Structure
