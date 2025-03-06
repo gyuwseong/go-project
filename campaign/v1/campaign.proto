@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package campaign.v1;
+
+option go_package = "go-project/gen/campaign/v1;campaignv1";
+
+service CampaignService {
+  rpc CreateCampaign(CreateCampaignRequest) returns (CreateCampaignResponse) {}
+  rpc GetCampaign(GetCampaignRequest) returns (GetCampaignResponse) {}
+  rpc IssueCoupon(IssueCouponRequest) returns (IssueCouponResponse) {}
+}
+
+message CreateCampaignRequest {
+  int32 available_coupons = 1;
+  int64 start_time = 2;
+}
+
+message CreateCampaignResponse {
+  Campaign campaign = 1;
+}
+
+message GetCampaignRequest {
+  string campaign_id = 1;
+}
+
+message GetCampaignResponse {
+  Campaign campaign = 1;
+  repeated string issued_coupon_codes = 2;
+}
+
+message IssueCouponRequest {
+  string campaign_id = 1;
+}
+
+message IssueCouponResponse {
+  Coupon coupon = 1;
+}
+
+message Campaign {
+  string id = 1;
+  int32 available_coupons = 2;
+  int64 start_time = 3;   
+}
+
+message Coupon {
+  string id = 1;
+  string campaign_id = 2;
+  string coupon_code = 3;
+} 
